@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://your-domain.com/sitemap.xml
+
+# Disallow admin and auth pages from indexing
+Disallow: /auth
+Disallow: /dashboard
+Disallow: /add-log
+Disallow: /history
+Disallow: /charts
+Disallow: /profile
+
+# Allow the landing page to be indexed
+Allow: /
+
+# Crawl delay (optional)
+Crawl-delay: 1 
