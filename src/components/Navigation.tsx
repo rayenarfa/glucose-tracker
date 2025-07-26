@@ -32,8 +32,40 @@ export default function Navigation() {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    setIsUserMenuOpen(false);
+    try {
+      // Clear any local storage or session data
+      localStorage.removeItem("supabase.auth.token");
+      sessionStorage.clear();
+
+      // Try multiple signout approaches
+      const signOutPromises = [
+        supabase.auth.signOut({ scope: "local" }),
+        supabase.auth.signOut({ scope: "global" }),
+        supabase.auth.signOut(), // Default signout
+      ];
+
+      // Wait for any of them to succeed
+      const results = await Promise.allSettled(signOutPromises);
+
+      // Check if any succeeded
+      const anySuccess = results.some(
+        (result) => result.status === "fulfilled" && !result.value.error
+      );
+
+      if (!anySuccess) {
+        console.warn("All signout methods failed, forcing redirect");
+      }
+
+      // Close the user menu
+      setIsUserMenuOpen(false);
+
+      // Always redirect to landing page
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Signout error:", error);
+      // Final fallback
+      window.location.href = "/";
+    }
   };
 
   const isActive = (path: string) => location.pathname === path;
@@ -248,8 +280,6 @@ export default function Navigation() {
           </div>
         </div>
       </div>
-
-      
     </>
   );
 }
