@@ -80,7 +80,7 @@ export default function LandingPage() {
         title="Glucose Tracker - Diabetes Management Made Simple"
         description="Track your blood glucose levels, visualize trends, and manage your diabetes effectively. Modern, mobile-first diabetes management app with secure authentication and real-time insights."
         keywords="diabetes, glucose tracker, blood sugar, diabetes management, health app, glucose monitoring, diabetes care, blood glucose levels"
-        url="https://your-domain.com"
+        url="https://glucose-tracker.vercel.app"
       />
 
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">

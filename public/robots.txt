@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://your-domain.com/sitemap.xml
+Sitemap: https://https://glucose-tracker.vercel.app/sitemap.xml
 
 # Disallow admin and auth pages from indexing
 Disallow: /auth

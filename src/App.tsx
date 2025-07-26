@@ -18,14 +18,29 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    console.log("App: Initializing authentication...");
+
+    supabase.auth.getSession().then(({ data: { session }, error }) => {
+      if (error) {
+        console.error("App: Error getting session:", error);
+      } else {
+        console.log(
+          "App: Session check result:",
+          session?.user?.email || "No user"
+        );
+      }
       setUser(session?.user ?? null);
       setLoading(false);
     });
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log(
+        "App: Auth state changed:",
+        event,
+        session?.user?.email || "No user"
+      );
       setUser(session?.user ?? null);
     });
 
@@ -51,7 +66,7 @@ function App() {
           />
           <Route
             path="/auth"
-            element={user ? <Navigate to="/auth" /> : <AuthPage />}
+            element={user ? <Navigate to="/dashboard" /> : <AuthPage />}
           />
           <Route
             path="/dashboard"

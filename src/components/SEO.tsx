@@ -19,7 +19,7 @@ export default function SEO({
   description = "Track your blood glucose levels, visualize trends, and manage your diabetes effectively. Modern, mobile-first diabetes management app with secure authentication and real-time insights.",
   keywords = "diabetes, glucose tracker, blood sugar, diabetes management, health app, glucose monitoring, diabetes care, blood glucose levels",
   image = "/glucosemeter-svgrepo-com.svg",
-  url = "https://your-domain.com",
+  url = "https://glucose-tracker.vercel.app",
   type = "website",
   author = "Glucose Tracker",
   publishedTime,
